@@ -542,8 +542,7 @@ def predictspam():
 def model_predict(img_path, modelsec):
 
     F={'MobileNet':'MNetFlowers.h5',
-    'MobileNetV2':'MNetV2Flowers.h5',
-    'VGG19':'VGG19Flowers.h5'}
+    'MobileNetV2':'MNetV2Flowers.h5'}
     model=F[modelsec]
 
     if model=="":
@@ -599,14 +598,13 @@ def uploaded_flower():
 
 def model_predictCovid(img_path, modelsec):
 
-    C={'Inceptionv3':'inceptionv3_covid.h5',
-   'MobileNet':'MNetcovid.h5',
+    C={'MobileNet':'MNetcovid.h5',
    'MobileNetV2':'MNetV2covid.h5'}
 
     model=C[modelsec]
 
     if model=="":
-        model='inceptionv3_covid.h5'
+        model='MNetcovid.h5'
     model = load_model('models/'+ model)
     # model._make_predict_function()  # Necessary
     img = image.load_img(img_path, target_size=(224, 224))
