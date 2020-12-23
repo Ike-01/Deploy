@@ -1,10 +1,7 @@
 from __future__ import division, print_function
 
-import folium
-from branca.element import Figure
 import pickle
 from flask import Flask, render_template, request, flash
-from flask import Markup
 import numpy as np
 import pandas as pd
 from chatterbot import ChatBot
@@ -20,11 +17,6 @@ from keras.applications.imagenet_utils import preprocess_input
 from keras.preprocessing import image
 import tensorflow as tf
 import keras
-
-from keras.preprocessing.text import Tokenizer
-from keras.preprocessing.sequence import pad_sequences
-from keras.applications.xception import Xception
-# from pickle import load
 from PIL import Image
 
 def find_top_confirmed(n = 15):
@@ -187,28 +179,6 @@ def funMap(df,Lat=7.9465,Long=-1.0232):
     m=folium.Map(location=[Lat,Long], control_scale=True,
                 zoom_start=8)
 
-    # fig=Figure(width=750, height=565)
-    # fig=Figure(width=1235, height=565)
-    # fig.add_child(m)
-
-    def circle_maker(x):
-        folium.Circle(location=[x[4],x[5]],
-                     radius=float(x[0]/500),
-                     color="red",
-                     popup='confirmed cases:{}'.format(x[0])).add_to(m)
-    df.apply(lambda x:circle_maker(x),axis=1)
-
-    folium.raster_layers.TileLayer('Open Street Map').add_to(m)
-    folium.raster_layers.TileLayer('Stamen Terrain').add_to(m)
-    folium.raster_layers.TileLayer('Stamen Toner').add_to(m)
-    folium.raster_layers.TileLayer('Stamen Watercolor').add_to(m)
-    folium.raster_layers.TileLayer('CartoDB Positron').add_to(m)
-    folium.raster_layers.TileLayer('CartoDB Dark_Matter').add_to(m)
-    # add layer control to show different maps
-    folium.LayerControl().add_to(m)
-    html_map=m._repr_html_()
-    return html_map
-
 @app.route('/index.html')
 def home():
    return render_template("index.html",table=cdf,pairs=pairs,com=tc,act=ta,rec=tr,ded=td,pa=pa,pr=pr,pds=pds,counter=countrynames)
@@ -234,25 +204,6 @@ def countryname(df,name='Ghana'):
     Long=data['Long'].values
     return Lat[0],Long[0]
 
-#pred=get_Predictions(data, 3, 0, 7)
-#results=[(i,j,k,l,m,n,x) for i,j,k,l,m,n,x in zip(pred.index, pred['Confirmed'],pred['PConfirmed'],pred['Recovered'], pred['PRecovered'], pred['I'] , pred['PI'])]
-
-#m=folium.Map(location=[7.9465,-1.0232],width=750, height=1000,,control_scale=True,tiles='Stamen toner',tiles = "Stamen Terrain",
-#            zoom_start=8)
-
-
-@app.route('/countrymap.html')
-def countrymap():
-   html_map=funMap(result)
-   return render_template("countrymap.html",table=cdf,cmap=html_map,pairs=pairs,com=tc,act=ta,rec=tr,ded=td,pa=pa,pr=pr,pds=pds,counter=countrynames)
-
-@app.route('/cmap',methods=['POST'])
-def cmap():
-    country=str(request.form['country'])
-    Lat,Long=countryname(result,country)
-    html_map=funMap(result,Lat,Long)
-    return render_template("countrymap.html",table=cdf,cmap=html_map,pairs=pairs,com=tc,act=ta,rec=tr,ded=td,pa=pa,pr=pr,pds=pds,counter=countrynames)
-
 chatbot = ChatBot(
     'CoronaBot',
     storage_adapter='chatterbot.storage.SQLStorageAdapter',
@@ -268,11 +219,11 @@ chatbot = ChatBot(
     database_uri='sqlite:///database.sqlite3'
 )
 
-# trainer = ListTrainer(chatbot)
-# training_data = open('coronaNewEdit.txt').read().splitlines()
-# trainer.train(training_data)
-#  Training with English Corpus Data
-# trainer_corpus = ChatterBotCorpusTrainer(chatbot)
+trainer = ListTrainer(chatbot)
+training_data = open('coronaNewEdit.txt').read().splitlines()
+trainer.train(training_data)
+ # Training with English Corpus Data
+trainer_corpus = ChatterBotCorpusTrainer(chatbot)
 
 
 @app.route("/pred.html")
@@ -655,4 +606,4 @@ def uploaded_covid():
 
        # https://github.com/Uttam580?tab=repositories
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run()
