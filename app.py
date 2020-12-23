@@ -271,7 +271,7 @@ chatbot = ChatBot(
 # trainer = ListTrainer(chatbot)
 # training_data = open('coronaNewEdit.txt').read().splitlines()
 # trainer.train(training_data)
-# # Training with English Corpus Data
+#  Training with English Corpus Data
 # trainer_corpus = ChatterBotCorpusTrainer(chatbot)
 
 
