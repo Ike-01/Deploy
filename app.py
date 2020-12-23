@@ -652,79 +652,7 @@ def uploaded_covid():
       # except Exception as e:
       #       print(e)
 
-@app.route('/uploadCap.html')
-def uploadCap():
-   return render_template('uploadCap.html')
 
-def extract_features(filename, model):
-        try:
-            image = Image.open(filename)
-
-        except:
-            print("ERROR: Couldn't open image! Make sure the image path and extension is correct")
-        image = image.resize((299,299))
-        image = np.array(image)
-        # for images that has 4 channels, we convert them into 3 channels
-        if image.shape[2] == 4:
-            image = image[..., :3]
-        image = np.expand_dims(image, axis=0)
-        image = image/127.5
-        image = image - 1.0
-        feature = model.predict(image)
-        return feature
-
-def word_for_id(integer, tokenizer):
- for word, index in tokenizer.word_index.items():
-     if index == integer:
-         return word
- return None
-
-
-def generate_desc(model, tokenizer, photo, max_length):
-    in_text = 'start'
-    for i in range(max_length):
-        sequence = tokenizer.texts_to_sequences([in_text])[0]
-        sequence = pad_sequences([sequence], maxlen=max_length)
-        pred = model.predict([photo,sequence], verbose=0)
-        pred = np.argmax(pred)
-        word = word_for_id(pred, tokenizer)
-        if word is None:
-            break
-        in_text += ' ' + word
-        if word == 'end':
-            break
-    return in_text
-
-@app.route('/uploaded_cap', methods = ['POST'])
-def uploaded_cap():
-    if request.method == 'POST':
-
-        if request.method == 'POST':
-            if 'file' not in request.files:
-                flash('No file part')
-                return redirect(request.url)
-            file = request.files['file']
-            if file.filename == '':
-                flash('No selected file')
-                return redirect(request.url)
-            if file:
-                filename = secure_filename(file.filename)
-                file_path=os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                file.save(file_path)
-        # img_path= './Web/uploads/images/upload_caps.jpg'
-        max_length = 32
-        tokenizer = pickle.load(open("tokenizer.p","rb"))
-        model = load_model('models/model_9.h5')
-        xception_model = Xception(include_top=False, pooling="avg")
-
-        photo = extract_features(file_path, xception_model)
-
-        description = generate_desc(model, tokenizer, photo, max_length)
-        description=description.replace('start','')
-        description=description.replace('end','')
-        description = description[1].upper() + description[2:]
-        P='uploads/images/'+filename
-        return render_template('uploadCap.html',d=description, C=P)
        # https://github.com/Uttam580?tab=repositories
 if __name__=="__main__":
     app.run(debug=True)

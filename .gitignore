@@ -1,0 +1,5 @@
+## Core latex/pdflatex auxiliary files:
+*.csv
+*.sqlite3
+*.md
+
