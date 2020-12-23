@@ -1,0 +1,969 @@
+
+html {
+  box-sizing: border-box;
+}
+
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+#footer-section{
+    background-color: #0B0334;
+    color: white;
+    padding: 1rem;
+    }
+
+ .cl {
+  background-color: #0B0334;
+ }  
+
+ .navbar-toggler-icon {
+  background-color: white;
+ }   
+
+.navbar-toggler-icon:hover {
+  background-color: brown;
+ } 
+
+/*--------------------------------------------------------------
+# Banner  
+--------------------------------------------------------------*/
+
+@keyframes myfirst {
+  0%   {background: red; right: 0px; top: 0px;}
+  /*25%  {background: yellow; left: 5px; top: 0px;}*/
+  /*50%  {background: blue; left: 20px; top: 20px;}*/
+  /*75%  {background: green; left: 0px; top: 20px;}
+  100% {background: red; left: 0px; top: 0px;}
+*/
+ /*0% {
+    transform: translateY(0);
+  }
+   
+  5% {
+    transform: translateY(-10px);
+  }
+
+  10% {
+    transform: translateY(0);
+  }
+
+  15% {
+    transform: translateY(-10px);
+  }
+
+  20% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(0);
+  }*/}
+
+/*###################### New background #############################*/
+/*--------------------------------------------------------------
+# Banner
+--------------------------------------------------------------*/
+.banner-one {     /*main background: */
+  background-color: #0a1c4f;
+  position: relative;
+  height: 620px;
+}
+
+.banner-one::before {  /*main background: */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(../images/background/banner-1--1-bg.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 50%;
+  height: 650px;
+}
+
+.banner-one .container {
+  position: relative;
+}
+
+.banner-one__moc {    /*Pic on Nurse background: */
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 90%;
+  height: 600px;
+ }
+
+.banner-one__content h3 {
+  margin: 0;
+  font-size: 75px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 26px;
+}
+
+.banner-one__content h3 span {
+  display: inline-block;
+  line-height: 1em;
+  position: relative;
+}
+
+.banner-one__content p {
+  font-size: 20px;
+  line-height: 36px;
+  font-weight: 500;
+  color: #fff;
+  opacity: 60%;
+  margin: 0;
+  margin-bottom: 44px;
+}
+
+.banner-one__video > img {  /*Nurse background: */
+  border-radius: 50%;
+  margin-top: 150px;
+  max-width: 450px;
+  height: 450px;
+  float: right;
+  display: inline-block;
+  position: absolute;
+  top: -70px;
+  right: 110px;    
+}
+
+.banner-one__video-btn {    /*Button for the video: */
+  background: #bb0000;
+  color: white;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-image: linear-gradient(90deg, #ffd240 0%, #fa9442 51%, #ffd240 100%);
+  background-size: 200% auto;
+  -webkit-transition: 500ms;
+  transition: 500ms;
+  margin-right: 50px;
+  float: right;
+  cursor: pointer;
+  margin-top: 240px;
+}
+
+.banner-one__video-btn:hover {
+  color: green;
+  background-position: right;
+}
+
+#imgflip {
+position: relative;
+  animation: mysecond 5000ms ease-out infinite alternate;
+}
+
+@keyframes mysecond {
+ 
+    0% {
+    left: 0;
+    top: 0;
+  }
+  50% {
+    left: 144px;
+    top: 10px;
+  }
+  100% {
+    left: 250px;
+    top: 0;
+  }
+}
+
+/* ############################## form buttons #############################*/
+
+#sty {  /* for the prediction buttoms */
+  outline: none;
+  margin: 0;
+  border: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  width: 100%;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.input--style-3 {
+  padding: 5px 0;
+  font-size: 16px;
+  color: #ccc;
+  background: transparent;
+}
+
+.input--style-3::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #ccc;
+}
+
+.input--style-3:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #ccc;
+  opacity: 1;
+}
+
+.input--style-3::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #ccc;
+  opacity: 1;
+}
+
+.input--style-3:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #ccc;
+}
+
+.input--style-3:-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #ccc;
+}
+
+.btn--radius {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.btn--pill {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  float: right;
+}
+
+.btn--green {
+  background: #57b846;
+}
+
+.btn--green:hover {
+  background: #4dae3c;
+}
+.h {
+  font-size: 20px;color:white;text-align:center
+}
+
+/* ############################### for chat home page ###########################*/
+
+.banner-2 {     /*main background: */
+  background-color: #0a1c4f;
+  position: relative;
+  height: 220px;
+}
+
+.banner-2::before {  /*main background: */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(../images/background/banner-1--1-bg.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 50%;
+  height: 250px;
+}
+
+.banner-2 .container {
+  position: relative;
+}
+
+.banner-2__moc {    /*Pic on Nurse background: */
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 70%;
+  height: 220px;
+ }
+
+.banner-2__content h3 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 36px;
+}
+
+.banner-2__content h3 span {
+  display: inline-block;
+  line-height: 1em;
+  position: relative;
+}
+
+.banner-2__content p {
+  font-size: 20px;
+  line-height: 36px;
+  font-weight: 400;
+  color: #fff;
+  opacity: 60%;
+  margin: 0;
+  margin-bottom: 44px;
+}
+
+.banner-2__video > img {  /*Nurse background: */
+  border-radius: 50%;
+  margin-top: 120px;
+  max-width: 200px;
+  height: 200px;
+  float: right;
+   display: inline-block;
+  position: absolute;
+  top: -110px;
+  right: 70px;    
+}
+
+.banner-2__video-btn {    /*Button for the video: */
+  background: #bb0000;
+  color: white;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-image: linear-gradient(90deg, #ffd240 0%, #fa9442 51%, #ffd240 100%);
+  background-size: 200% auto;
+  -webkit-transition: 500ms;
+  transition: 500ms;
+  margin-right: 10px;
+  float: right;
+  cursor: pointer;
+  margin-top: 45px;
+}
+
+.banner-2__video-btn:hover {
+  color: green;
+  background-position: right;
+}
+
+#imgfliper {
+position: relative;
+  animation: mysecon 5000ms ease-out infinite alternate;
+}
+
+@keyframes mysecon {
+ 
+    0% {
+    left: 0;
+    top: 0;
+  }
+  50% {
+    left: 144px;
+    top: 20px;
+  }
+  100% {
+    left: 100px;
+    top: 0;
+  }
+}
+/*#####################################################################*/
+
+:root {
+  --body-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  --msger-bg: #fff;
+  --border: 2px solid #ddd;
+  --left-msg-bg: #0B0334 ;  /*#ececec  */
+  --right-msg-bg: #579ffb;
+}
+
+.msger { 
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1355px;
+  margin-top: 30px;
+  margin-bottom:5; 
+  margin-left: 5px;
+  margin-right: 5px;
+  height: calc(100% - 50px);
+  border: var(--border);
+  border-radius: 10px;
+ /* background: var(--msger-bg);*/
+  box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);
+}
+
+.msger-header {
+  /* display: flex; */
+  font-size: medium;
+  justify-content: space-between;
+  padding: 10px;
+  text-align: center;
+  border-bottom: var(--border);
+  background: #eee;
+  color: #666;
+}
+
+.msger-chat {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+}
+.msger-chat::-webkit-scrollbar {
+  width: 6px;
+}
+.msger-chat::-webkit-scrollbar-track {
+  background: #ddd;
+}
+.msger-chat::-webkit-scrollbar-thumb {
+  background: #bdbdbd;
+}
+.msg {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.msg-img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  background: #ddd;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+.msg-bubble {  /*550px for the bot initial message */
+  max-width: 100%;
+  padding: 10px;
+  border-radius: 20px;
+  background: var(--left-msg-bg);
+  color: white;
+  /*margin-top: 40px;*/
+}
+.msg-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.msg-info-name {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.msg-info-time {  /*for the bot initial message time */
+  font-size: 0.85em;
+  margin-right: 5px;
+  font-weight: bold;
+  color: #FBF85E;
+}
+.msg-info-time span { /*for the bot initial message time span */
+  font-size: 0.85em;
+  margin-right: 10px;
+  font-weight: bold;
+  color: orange;
+}
+
+.left-msg .msg-bubble {
+  border-bottom-left-radius: 0;
+}
+
+.right-msg {
+  flex-direction: row-reverse;
+}
+.right-msg .msg-bubble {
+  background: var(--right-msg-bg);
+  color: #fff;
+  border-bottom-right-radius: 0;
+}
+
+.right-msg .msg-img {
+  margin: 0 0 0 10px;
+}
+
+.msger-inputarea {
+  display: flex;
+  padding: 10px;
+  border-top: var(--border);
+  background: #eee;
+}
+.msger-inputarea * {
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 1em;
+}
+.msger-input {
+  flex: 1;
+  background: #ddd; 
+}
+.msger-send-btn {
+  margin-left: 10px;
+  background: rgb(0, 196, 65);
+  color: #fff; 
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.23s;
+}
+.msger-send-btn:hover {
+  background: rgb(0, 180, 50);
+}
+
+.msger-chat {
+  background-color: #fcfcfe;
+  }
+.msger-header-title{ /*for the bot header */
+ /*font-size: 1.1em;*/
+font-weight: bold;
+color: orange;
+}
+/* ##################################  end of chat home page ####################### */
+
+/*supervisor*/
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 20%;
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+/*scroll button*/
+#myBtn {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 10px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: red; /* Set a background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  /*padding: 15px;  Some padding */
+  /*font-size: 18px;  Increase font size */
+  border-radius: 50%;/* Rounded corners */
+}
+
+#myBtn:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
+#pren {margin: 15px;
+       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+       transition: 0.3s;
+       width: 20%;
+}
+
+#btm{   /*for the enter button: */
+ float: right; 
+ margin-top: 3px;
+ border-radius: 40px;
+}
+
+#st {        /*for the fliper */
+  width:40px; 
+  height: 40px;
+ }
+
+#dTable { /*for the prediction table */
+width:100%; 
+border: 2px solid black; 
+color: white; 
+font-size: 20px;
+
+}
+.fsize { /*for the prediction table */
+  font-size: 20px;
+}
+
+#dataTable { /*for the prediction table */
+width:100%; 
+border: 2px solid black; 
+color: white; 
+font-size: 20px;
+}
+
+#cornaP { /*for the CORONA PREVENTION */
+ width:100%;
+ height: 500px;
+ margin-right: 10px;
+}
+
+#btnP {
+  border-radius: 20px;
+}
+/*#dropPD {
+  float: right; 
+  margin-top: 1px; 
+  margin-left: 290px; 
+  position: relative;
+}
+#dropPB {
+   float: right; 
+   margin-top: 1px;
+   margin-left: 390px;
+   position: absolute;
+}
+*/
+#mapsize{
+ width: 1280px;
+}
+/* ##################################### for mobile view*/
+@media (min-width: 320px) and (max-width: 600px) {
+.banner-one {     /*main background: */
+  background-color: #0a1c4f;
+  position: relative;
+  height: 220px;
+}
+
+.banner-one::before {  /*main background: */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(../images/background/banner-1--1-bg.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 50%;
+  height: 250px;
+}
+
+.banner-one .container {
+  position: relative;
+}
+
+.banner-one__moc {    /*Pic on Nurse background: */
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 70%;
+  height: 220px;
+ }
+
+.banner-one__content h3 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 36px;
+}
+
+.banner-one__content h3 span {
+  display: inline-block;
+  line-height: 1em;
+  position: relative;
+}
+
+.banner-one__content p {
+  font-size: 20px;
+  line-height: 36px;
+  font-weight: 400;
+  color: #fff;
+  opacity: 60%;
+  margin: 0;
+  margin-bottom: 44px;
+}
+
+.banner-one__video > img {  /*Nurse background: */
+  border-radius: 50%;
+  margin-top: 120px;
+  max-width: 200px;
+  height: 200px;
+  float: right;
+   display: inline-block;
+  position: absolute;
+  top: -110px;
+  right: 70px;    
+}
+
+.banner-one__video-btn {    /*Button for the video: */
+  background: #bb0000;
+  color: white;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-image: linear-gradient(90deg, #ffd240 0%, #fa9442 51%, #ffd240 100%);
+  background-size: 200% auto;
+  -webkit-transition: 500ms;
+  transition: 500ms;
+  margin-right: 10px;
+  float: right;
+  cursor: pointer;
+  margin-top: 45px;
+}
+
+.banner-one__video-btn:hover {
+  color: green;
+  background-position: right;
+}
+
+#imgflip {
+position: relative;
+  animation: mysecond 5000ms ease-out infinite alternate;
+ }
+
+ #btm {
+ float: right; 
+ margin-top: 10px;
+ border-radius: 40px;
+ margin-bottom: 2px;
+ font-size: 5px;
+}
+
+@keyframes mysecond {
+ 
+    0% {
+    left: 0;
+    top: 0;
+  }
+  50% {
+    left: 144px;
+    top: 20px;
+  }
+  100% {
+    left: 120px;
+    top: 0;
+  }
+}
+
+#dTable { /*for the prediction table */
+width:100%; 
+border: 1px solid black; 
+color: white; 
+font-size: 10px;
+ }
+
+.fsize { /*for the prediction table */
+  font-size: 10px; 
+  /*width: 5px;*/
+}
+
+#dataTable { /*for the prediction table */
+width:100%; 
+border: 1px solid black; 
+color: white; 
+font-size: 14px;
+ }
+
+ #cornaP{ /*for the CORONA PREVENTION */
+ width:100%;
+ height: 250px;
+ /*margin: 10px;*/
+}
+#mapsize{
+ width: 120px;
+}
+}
+
+/* ##################################### for Tablet view*/
+@media (min-width: 768px) and (max-width: 1024px) {
+.banner-one {     /*main background: */
+  background-color: #0a1c4f;
+  position: relative;
+  height: 220px;
+}
+
+.banner-one::before {  /*main background: */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(../images/background/banner-1--1-bg.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 50%;
+  height: 250px;
+}
+
+.banner-one .container {
+  position: relative;
+}
+
+.banner-one__moc {    /*Pic on Nurse background: */
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 70%;
+  height: 220px;
+ }
+
+.banner-one__content h3 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 36px;
+}
+
+.banner-one__content h3 span {
+  display: inline-block;
+  line-height: 1em;
+  position: relative;
+}
+
+.banner-one__content p {
+  font-size: 20px;
+  line-height: 36px;
+  font-weight: 400;
+  color: #fff;
+  opacity: 60%;
+  margin: 0;
+  margin-bottom: 44px;
+}
+
+.banner-one__video > img {  /*Nurse background: */
+  border-radius: 50%;
+  margin-top: 120px;
+  max-width: 200px;
+  height: 200px;
+  float: right;
+   display: inline-block;
+  position: absolute;
+  top: -110px;
+  right: 70px;    
+}
+
+.banner-one__video-btn {    /*Button for the video: */
+  background: #bb0000;
+  color: white;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-image: linear-gradient(90deg, #ffd240 0%, #fa9442 51%, #ffd240 100%);
+  background-size: 200% auto;
+  -webkit-transition: 500ms;
+  transition: 500ms;
+  margin-right: 10px;
+  float: right;
+  cursor: pointer;
+  margin-top: 45px;
+}
+
+.banner-one__video-btn:hover {
+  color: green;
+  background-position: right;
+}
+
+#imgflip {
+position: relative;
+  animation: mysecond 5000ms ease-out infinite alternate;
+ }
+
+ #btm {
+ float: right; 
+ margin-top: 10px;
+ border-radius: 40px;
+ margin-bottom: 2px;
+ font-size: 5px;
+}
+
+@keyframes mysecond {
+ 
+    0% {
+    left: 0;
+    top: 0;
+  }
+  50% {
+    left: 144px;
+    top: 20px;
+  }
+  100% {
+    left: 120px;
+    top: 0;
+  }
+}
+
+#dTable { /*for the prediction table */
+width:100%; 
+border: 1px solid black; 
+color: white; 
+font-size: 14px;
+ }
+
+.fsize { /*for the prediction table */
+  font-size: 10px; 
+  /*width: 5px;*/
+}
+
+#dataTable { /*for the prediction table */
+width:100%; 
+border: 1px solid black; 
+color: white; 
+font-size: 14px;
+ }
+ #cornaP{ /*for the CORONA PREVENTION */
+ width:100%;
+ height: 250px;
+ /*margin: 10px;*/
+}
+
+}
+/* ########################################### medium devices*/
+/*@media (min-width: 992px) and (max-width: 1199px) {
+
+ #dTable { /*for the prediction table 
+width:100%; 
+border: 1px solid black; 
+color: white; 
+font-size: 50px;
+ }
+
+#fsize { /*for the prediction table 
+  font-size: 20px; 
+  /*width: 5px;
+}
+}*/
+
+@media (min-width: 600px) and (max-width: 991px) {
+#dTable { /*for the prediction table */
+width:100%; 
+border: 1px solid black; 
+color: white; 
+font-size: 10px;
+ }
+
+.fsize { /*for the prediction table */
+  font-size: 10px; 
+  /*width: 5px; */
+}
+#btnP {
+  border-radius: 20px;
+  font-size: 8px;
+}
+}
