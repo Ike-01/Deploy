@@ -12,12 +12,13 @@ from sklearn.metrics.pairwise import cosine_similarity
 import os
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
-from tensorflow.keras.models import load_model
+# from tensorflow.keras.models import load_model
+from keras.models import load_model
 from keras.applications.imagenet_utils import preprocess_input
 from keras.preprocessing import image
-import tensorflow as tf
+# import tensorflow as tf
 import keras
-from PIL import Image
+# from PIL import Image
 
 def find_top_confirmed(n = 15):
 
@@ -219,11 +220,11 @@ chatbot = ChatBot(
     database_uri='sqlite:///database.sqlite3'
 )
 
-trainer = ListTrainer(chatbot)
-training_data = open('coronaNewEdit.txt').read().splitlines()
-trainer.train(training_data)
- # Training with English Corpus Data
-trainer_corpus = ChatterBotCorpusTrainer(chatbot)
+# trainer = ListTrainer(chatbot)
+# training_data = open('coronaNewEdit.txt').read().splitlines()
+# trainer.train(training_data)
+#  # Training with English Corpus Data
+# trainer_corpus = ChatterBotCorpusTrainer(chatbot)
 
 
 @app.route("/pred.html")
