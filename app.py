@@ -680,4 +680,4 @@ def api():
 
        # https://github.com/Uttam580?tab=repositories
 if __name__=="__main__":
-    app.run()
+    app.run(debug=True)
