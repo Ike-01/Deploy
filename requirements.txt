@@ -10,7 +10,7 @@ MarkupSafe==1.1.1
 gunicorn==20.0.4
 numpy==1.19.3
 pandas==1.1.5
-sklearn==0.0
+sklearn
 gevent==20.12.0
 PyYAML<=4.0
 
