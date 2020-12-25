@@ -1,4 +1,4 @@
-from __future__ import division, print_function
+# from __future__ import division, print_function
 
 import pickle
 from flask import Flask, render_template, request, flash
@@ -13,11 +13,11 @@ import os
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 # from tensorflow.keras.models import load_model
-from keras.models import load_model
-from keras.applications.imagenet_utils import preprocess_input
-from keras.preprocessing import image
-# import tensorflow as tf
-import keras
+# from keras.models import load_model
+# from keras.applications.imagenet_utils import preprocess_input
+# from keras.preprocessing import image
+# # import tensorflow as tf
+# import keras
 # from PIL import Image
 
 def find_top_confirmed(n = 15):
@@ -491,119 +491,192 @@ def predictspam():
 # session = tf.Session(config=config)
 # keras.backend.set_session(session)
 
-def model_predict(img_path, modelsec):
-
-    F={'MobileNet':'MNetFlowers.h5',
-    'MobileNetV2':'MNetV2Flowers.h5'}
-    model=F[modelsec]
-
-    if model=="":
-        model='MNetFlowers.h5'
-    model = load_model('models/'+ model)
-    # model._make_predict_function()  # Necessary
-    img = image.load_img(img_path, target_size=(224, 224))
-    x = image.img_to_array(img)
-    x = np.expand_dims(x, axis=0)
-    x= preprocess_input(x)
-    classes = model.predict(x)
-    result=classes.argmax(axis=1)
-    classe={'daisy': 0, 'dandelion': 1, 'roses': 2, 'sunflowers': 3, 'tulips': 4}
-    key_list = list(classe.keys())
-    prediction=key_list[result[0]]
-    predictions=classes[0][result[0]]
-    q=1-predictions
-    predictions= '%.2f' % (predictions*100)
-    q= '%.2f' % (q*100)
-    return prediction, predictions, q
-
-@app.route('/uploadFlowers.html')
-def uploadFlowers():
-   return render_template('uploadFlowers.html')
-
-@app.route('/uploaded_flower', methods = ['POST'])
-def uploaded_flower():
-# with session.as_default():
-#     with session.graph.as_default():
-     # try:
-        # check if the post request has the file part
-        if request.method == 'POST':
-            if request.method == 'POST':
-                if 'file' not in request.files:
-                    flash('No file part')
-                    return redirect(request.url)
-                file = request.files['file']
-                if file.filename == '':
-                    flash('No selected file')
-                    return redirect(request.url)
-                if file:
-                    filename = secure_filename(file.filename)
-                    file_path=os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                    file.save(file_path)
-
-            models= request.form['models']
-            prediction, predictions, q = model_predict(file_path, models)
-            P='uploads/images/'+filename
-            return render_template('uploadFlowers.html',p=predictions, q=q, c= prediction, F=P)
+# def model_predict(img_path, modelsec):
+#
+#     F={'MobileNet':'MNetFlowers.h5',
+#     'MobileNetV2':'MNetV2Flowers.h5'}
+#     model=F[modelsec]
+#
+#     if model=="":
+#         model='MNetFlowers.h5'
+#     model = load_model('models/'+ model)
+#     # model._make_predict_function()  # Necessary
+#     img = image.load_img(img_path, target_size=(224, 224))
+#     x = image.img_to_array(img)
+#     x = np.expand_dims(x, axis=0)
+#     x= preprocess_input(x)
+#     classes = model.predict(x)
+#     result=classes.argmax(axis=1)
+#     classe={'daisy': 0, 'dandelion': 1, 'roses': 2, 'sunflowers': 3, 'tulips': 4}
+#     key_list = list(classe.keys())
+#     prediction=key_list[result[0]]
+#     predictions=classes[0][result[0]]
+#     q=1-predictions
+#     predictions= '%.2f' % (predictions*100)
+#     q= '%.2f' % (q*100)
+#     return prediction, predictions, q
+#
+# @app.route('/uploadFlowers.html')
+# def uploadFlowers():
+#    return render_template('uploadFlowers.html')
+#
+# @app.route('/uploaded_flower', methods = ['POST'])
+# def uploaded_flower():
+# # with session.as_default():
+# #     with session.graph.as_default():
+#      # try:
+#         # check if the post request has the file part
+#         if request.method == 'POST':
+#             if request.method == 'POST':
+#                 if 'file' not in request.files:
+#                     flash('No file part')
+#                     return redirect(request.url)
+#                 file = request.files['file']
+#                 if file.filename == '':
+#                     flash('No selected file')
+#                     return redirect(request.url)
+#                 if file:
+#                     filename = secure_filename(file.filename)
+#                     file_path=os.path.join(app.config['UPLOAD_FOLDER'], filename)
+#                     file.save(file_path)
+#
+#             models= request.form['models']
+#             prediction, predictions, q = model_predict(file_path, models)
+#             P='uploads/images/'+filename
+#             return render_template('uploadFlowers.html',p=predictions, q=q, c= prediction, F=P)
       # except Exception as e:
       #       print(e)
 
 
-def model_predictCovid(img_path, modelsec):
-
-    C={'MobileNet':'MNetcovid.h5',
-   'MobileNetV2':'MNetV2covid.h5'}
-
-    model=C[modelsec]
-
-    if model=="":
-        model='MNetcovid.h5'
-    model = load_model('models/'+ model)
-    # model._make_predict_function()  # Necessary
-    img = image.load_img(img_path, target_size=(224, 224))
-    x = image.img_to_array(img)
-    x = np.expand_dims(x, axis=0)
-    x= preprocess_input(x)
-    classes = model.predict(x)
-    result=classes.argmax(axis=1)
-    classe={'Covid': 0, 'Normal': 1}
-    key_list = list(classe.keys())
-    prediction=key_list[result[0]]
-    predictions=classes[0][result[0]]
-    q=1-predictions
-    predictions= '%.2f' % (predictions*100)
-    q= '%.2f' % (q*100)
-    return prediction, predictions, q
-
-@app.route('/upload.html')
-def upload():
-   return render_template('upload.html')
-
-@app.route('/uploaded_covid', methods = ['POST'])
-def uploaded_covid():
-# with session.as_default():
-#     with session.graph.as_default():
-     # try:
-        # check if the post request has the file part
-        if request.method == 'POST':
-            if request.method == 'POST':
-                if 'file' not in request.files:
-                    flash('No file part')
-                    return redirect(request.url)
-                file = request.files['file']
-                if file.filename == '':
-                    flash('No selected file')
-                    return redirect(request.url)
-                if file:
-                    filename = secure_filename(file.filename)
-                    file_path=os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                    file.save(file_path)
-            models= request.form['models']
-            prediction, predictions, q = model_predictCovid(file_path, models)
-            P='uploads/images/'+filename
-            return render_template('upload.html',p=predictions, q=q, c= prediction, F=P)
+# def model_predictCovid(img_path, modelsec):
+#
+#     C={'MobileNet':'MNetcovid.h5',
+#    'MobileNetV2':'MNetV2covid.h5'}
+#
+#     model=C[modelsec]
+#
+#     if model=="":
+#         model='MNetcovid.h5'
+#     model = load_model('models/'+ model)
+#     # model._make_predict_function()  # Necessary
+#     img = image.load_img(img_path, target_size=(224, 224))
+#     x = image.img_to_array(img)
+#     x = np.expand_dims(x, axis=0)
+#     x= preprocess_input(x)
+#     classes = model.predict(x)
+#     result=classes.argmax(axis=1)
+#     classe={'Covid': 0, 'Normal': 1}
+#     key_list = list(classe.keys())
+#     prediction=key_list[result[0]]
+#     predictions=classes[0][result[0]]
+#     q=1-predictions
+#     predictions= '%.2f' % (predictions*100)
+#     q= '%.2f' % (q*100)
+#     return prediction, predictions, q
+#
+# @app.route('/upload.html')
+# def upload():
+#    return render_template('upload.html')
+#
+# @app.route('/uploaded_covid', methods = ['POST'])
+# def uploaded_covid():
+# # with session.as_default():
+# #     with session.graph.as_default():
+#      # try:
+#         # check if the post request has the file part
+#         if request.method == 'POST':
+#             if request.method == 'POST':
+#                 if 'file' not in request.files:
+#                     flash('No file part')
+#                     return redirect(request.url)
+#                 file = request.files['file']
+#                 if file.filename == '':
+#                     flash('No selected file')
+#                     return redirect(request.url)
+#                 if file:
+#                     filename = secure_filename(file.filename)
+#                     file_path=os.path.join(app.config['UPLOAD_FOLDER'], filename)
+#                     file.save(file_path)
+#             models= request.form['models']
+#             prediction, predictions, q = model_predictCovid(file_path, models)
+#             P='uploads/images/'+filename
+#             return render_template('upload.html',p=predictions, q=q, c= prediction, F=P)
       # except Exception as e:
       #       print(e)
 
+def input_to_one_hot(data):
+    # initialize the target vector with zero values
+    enc_input = np.zeros(61)
+    # set the numerical input as they are
+    enc_input[0] = data['year_model']
+    enc_input[1] = data['mileage']
+    enc_input[2] = data['fiscal_power']
+    ##################### Mark #########################
+    # get the array of marks categories
+    marks = ['Peugeot', 'Renault', 'Citroen', 'Mercedes-Benz', 'Ford', 'Nissan',
+       'Fiat', 'Skoda', 'Hyundai', 'Kia', 'Dacia', 'Opel', 'Volkswagen',
+       'mini', 'Seat', 'Isuzu', 'Honda', 'Mitsubishi', 'Toyota', 'BMW',
+       'Chevrolet', 'Audi', 'Suzuki', 'Ssangyong', 'lancia', 'Jaguar',
+       'Volvo', 'Autres', 'BYD', 'Daihatsu', 'Land Rover', 'Jeep', 'Chery',
+       'Alfa Romeo', 'Bentley', 'Daewoo', 'Hummer', 'Mazda', 'Chrysler',
+       'Maserati', 'Cadillac', 'Dodge', 'Rover', 'Porsche', 'GMC',
+       'Infiniti', 'Changhe', 'Geely', 'Zotye', 'UFO', 'Foton', 'Pontiac',
+       'Acura', 'Lexus']
+    cols = ['year_model', 'mileage', 'fiscal_power', 'fuel_type_Diesel',
+       'fuel_type_Electrique', 'fuel_type_Essence', 'fuel_type_LPG',
+       'mark_Acura', 'mark_Alfa Romeo', 'mark_Audi', 'mark_Autres', 'mark_BMW',
+       'mark_BYD', 'mark_Bentley', 'mark_Cadillac', 'mark_Changhe',
+       'mark_Chery', 'mark_Chevrolet', 'mark_Chrysler', 'mark_Citroen',
+       'mark_Dacia', 'mark_Daewoo', 'mark_Daihatsu', 'mark_Dodge', 'mark_Fiat',
+       'mark_Ford', 'mark_Foton', 'mark_GMC', 'mark_Geely', 'mark_Honda',
+       'mark_Hummer', 'mark_Hyundai', 'mark_Infiniti', 'mark_Isuzu',
+       'mark_Jaguar', 'mark_Jeep', 'mark_Kia', 'mark_Land Rover', 'mark_Lexus',
+       'mark_Maserati', 'mark_Mazda', 'mark_Mercedes-Benz', 'mark_Mitsubishi',
+       'mark_Nissan', 'mark_Opel', 'mark_Peugeot', 'mark_Pontiac',
+       'mark_Porsche', 'mark_Renault', 'mark_Rover', 'mark_Seat', 'mark_Skoda',
+       'mark_Ssangyong', 'mark_Suzuki', 'mark_Toyota', 'mark_UFO',
+       'mark_Volkswagen', 'mark_Volvo', 'mark_Zotye', 'mark_lancia',
+       'mark_mini']
+
+    # redefine the the user inout to match the column name
+    redefinded_user_input = 'mark_'+data['mark']
+    # search for the index in columns name list
+    mark_column_index = cols.index(redefinded_user_input)
+    #print(mark_column_index)
+    # fullfill the found index with 1
+    enc_input[mark_column_index] = 1
+    ##################### Fuel Type ####################
+    # get the array of fuel type
+    fuel_type = ['Diesel', 'Essence', 'Electrique', 'LPG']
+    # redefine the the user inout to match the column name
+    redefinded_user_input = 'fuel_type_'+data['fuel_type']
+    # search for the index in columns name list
+    fuelType_column_index = cols.index(redefinded_user_input)
+    # fullfill the found index with 1
+    enc_input[fuelType_column_index] = 1
+    return enc_input
+
+@app.route('/uploadcar.html')
+def uploadcar():
+   return render_template('uploadcar.html')
+
+@app.route('/api',methods=['POST'])
+def api():
+    result=request.form
+    year_model = result['year_model']
+    mileage = result['mileage']
+    mark = result['mark']
+    fiscal_power = result['fiscal_power']
+    fuel_type = result['fuel_type']
+
+    user_input = {'year_model':year_model, 'mileage':mileage, 'fiscal_power':fiscal_power, 'fuel_type':fuel_type, 'mark':mark}
+
+    model = pickle.load(open('models/modelgbr.sav', 'rb'))
+
+    a = input_to_one_hot(user_input)
+    price_pred = model.predict([a])[0]
+    price_pred = round(price_pred, 2)
+    return render_template('uploadcar.html', prediction_text=price_pred,c=mark,y=year_model)
 
        # https://github.com/Uttam580?tab=repositories
 if __name__=="__main__":
