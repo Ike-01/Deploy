@@ -18,7 +18,7 @@ from gevent.pywsgi import WSGIServer
 # from keras.preprocessing import image
 # # import tensorflow as tf
 # import keras
-# from PIL import Image
+
 
 def find_top_confirmed(n = 15):
 
